@@ -7,13 +7,14 @@
 #
 Name     : qpl
 Version  : 1.6.0
-Release  : 1
+Release  : 2
 URL      : https://github.com/intel/qpl/archive/refs/tags/v1.6.0.tar.gz
 Source0  : https://github.com/intel/qpl/archive/refs/tags/v1.6.0.tar.gz
 Summary  : @CMAKE_PROJECT_DESCRIPTION@
 Group    : Development/Tools
 License  : MIT
 Requires: qpl-data = %{version}-%{release}
+Requires: qpl-lib = %{version}-%{release}
 Requires: qpl-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : googletest-dev
@@ -41,12 +42,23 @@ data components for the qpl package.
 %package dev
 Summary: dev components for the qpl package.
 Group: Development
+Requires: qpl-lib = %{version}-%{release}
 Requires: qpl-data = %{version}-%{release}
 Provides: qpl-devel = %{version}-%{release}
 Requires: qpl = %{version}-%{release}
 
 %description dev
 dev components for the qpl package.
+
+
+%package lib
+Summary: lib components for the qpl package.
+Group: Libraries
+Requires: qpl-data = %{version}-%{release}
+Requires: qpl-license = %{version}-%{release}
+
+%description lib
+lib components for the qpl package.
 
 
 %package license
@@ -66,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1725548252
+export SOURCE_DATE_EPOCH=1725549120
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -85,7 +97,8 @@ ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export GOAMD64=v2
 %cmake .. -DQPL_BUILD_TESTS=OFF \
--DQPL_BUILD_EXAMPLES=OFF  -G 'Unix Makefiles'
+-DQPL_BUILD_EXAMPLES=OFF \
+-DQPL_LIBRARY_TYPE=SHARED  -G 'Unix Makefiles'
 make  %{?_smp_mflags}
 popd
 
@@ -104,7 +117,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1725548252
+export SOURCE_DATE_EPOCH=1725549120
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/qpl
 cp %{_builddir}/qpl-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/qpl/f08440c426d0e6a457ae51d427f1b07b4b83bb86 || :
@@ -156,6 +169,13 @@ popd
 /usr/lib64/cmake/QPL/QPLConfigVersion.cmake
 /usr/lib64/cmake/QPL/QPLTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/QPL/QPLTargets.cmake
+/usr/lib64/libqpl.so
+/usr/lib64/pkgconfig/qpl.pc
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libqpl.so.1
+/usr/lib64/libqpl.so.1.6.0
 
 %files license
 %defattr(0644,root,root,0755)
