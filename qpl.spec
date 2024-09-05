@@ -7,7 +7,7 @@
 #
 Name     : qpl
 Version  : 1.6.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/intel/qpl/archive/refs/tags/v1.6.0.tar.gz
 Source0  : https://github.com/intel/qpl/archive/refs/tags/v1.6.0.tar.gz
 Summary  : @CMAKE_PROJECT_DESCRIPTION@
