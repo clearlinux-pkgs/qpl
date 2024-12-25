@@ -12,6 +12,7 @@ libqpl.so.1:qpl_get_existing_dict_size
 libqpl.so.1:qpl_get_index_table_size
 libqpl.so.1:qpl_get_job_size
 libqpl.so.1:qpl_get_library_version
+libqpl.so.1:qpl_get_safe_deflate_compression_buffer_size
 libqpl.so.1:qpl_huffman_only_table_create
 libqpl.so.1:qpl_huffman_table_deserialize
 libqpl.so.1:qpl_huffman_table_destroy
