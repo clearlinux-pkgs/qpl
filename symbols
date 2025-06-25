@@ -1,3 +1,5 @@
+libqpl.so.1:_ZN3qpl2ml11compression16update_histogramILNS0_16execution_path_tE1EPKhvEEjT0_S6_R13qpl_histogram22qpl_compression_levels
+libqpl.so.1:_ZN3qpl2ml11compression16update_histogramILNS0_16execution_path_tE2EPKhvEEjT0_S6_R13qpl_histogram22qpl_compression_levels
 libqpl.so.1:qpl_build_dictionary
 libqpl.so.1:qpl_check_job
 libqpl.so.1:qpl_deflate_huffman_table_create
@@ -8,6 +10,7 @@ libqpl.so.1:qpl_fini_job
 libqpl.so.1:qpl_gather_deflate_statistics
 libqpl.so.1:qpl_get_dictionary_id
 libqpl.so.1:qpl_get_dictionary_size
+libqpl.so.1:qpl_get_execution_record
 libqpl.so.1:qpl_get_existing_dict_size
 libqpl.so.1:qpl_get_index_table_size
 libqpl.so.1:qpl_get_job_size
